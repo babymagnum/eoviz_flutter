@@ -1,5 +1,6 @@
 import 'package:dribbble_clone/view/login/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashView extends StatefulWidget {
 
@@ -23,6 +24,10 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

@@ -4,5 +4,8 @@
   "login": "Login",
   "forgot_password": "Lupa Password?",
   "new_device": "Perangkat Baru",
+  "new_password": "Password Baru",
+  "confirm_password": "Konfirmasi Password",
+  "send": "Kirim",
   "english": "English"
 }

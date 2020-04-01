@@ -1,4 +1,5 @@
 import '../../view/login/stores/login_stores.dart';
+import '../../view/forgot_password/stores/forgot_password_stores.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.I;
@@ -16,4 +17,5 @@ void setupLocator() {
   * */
 
   locator.registerLazySingleton<LoginStores>(() => LoginStores());
+  locator.registerLazySingleton<ForgotPasswordStores>(() => ForgotPasswordStores());
 }
