@@ -1,10 +1,7 @@
 import 'package:dribbble_clone/view/screen1/screen1_view.dart';
 import 'package:dribbble_clone/view/screen2/screen2_view.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../core/helper/constant.dart';
 import '../../core/theme/theme_color.dart';
-import '../../core/theme/theme_text_style.dart';
 
 class HomeView extends StatefulWidget {
 
@@ -48,9 +45,6 @@ class _HomeViewState extends State<HomeView> {
               padding: EdgeInsets.only(top: 3),
               child: Text(
                 'Screen 1',
-                style: ThemeTextStyle.ubuntuR.apply(
-                  fontSizeDelta: -6, color: selectedIndex == 0 ? ThemeColor.orange : ThemeColor.dark_grey,
-                ),
               ),
             ),
           ),
@@ -64,9 +58,6 @@ class _HomeViewState extends State<HomeView> {
               padding: EdgeInsets.only(top: 3),
               child: Text(
                 'Screen 2',
-                style: ThemeTextStyle.ubuntuR.apply(
-                  fontSizeDelta: -6, color: selectedIndex == 1 ? ThemeColor.orange : ThemeColor.dark_grey,
-                ),
               ),
             ),
           ),

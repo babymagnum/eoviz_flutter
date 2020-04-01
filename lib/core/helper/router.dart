@@ -1,12 +1,15 @@
 import 'package:dribbble_clone/view/home/home_view.dart';
+import 'package:dribbble_clone/view/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Router {
-  static const String initialRoute = HomeView.routeName;
+  static const String initialRoute = SplashView.routeName;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case SplashView.routeName:
+        return MaterialPageRoute(builder: (_) => SplashView());
       case HomeView.routeName:
         return MaterialPageRoute(builder: (_) => HomeView());
       default:

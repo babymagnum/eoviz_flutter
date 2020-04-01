@@ -131,7 +131,7 @@ class BaseService {
         preference.clear();
       }
       print('ResponseError: ${e.response.toString()}');
-      var responseMap = jsonDecode(e.response.toString());
+      //var responseMap = jsonDecode(e.response.toString());
       resultResponse = List();
     }
 

@@ -40,6 +40,8 @@ dependencies:
   division: ^0.8.7+2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -56,7 +58,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logo_plis.png"
+  image_path: "assets/images/logo_eoviz.png"
 
 flutter:
 
@@ -64,18 +66,30 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/langs/en.json
+    - assets/langs/fr.json
 
   fonts:
-    - family: Ubuntu
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/Ubuntu-B.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Ubuntu-L.ttf
-          weight: 300
-        - asset: assets/fonts/Ubuntu-M.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Ubuntu-R.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
           weight: 400
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Poppins-Thin.ttf
+          weight: 100
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Bold.ttf
