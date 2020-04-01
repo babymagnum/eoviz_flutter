@@ -1,18 +1,17 @@
 import 'package:division/division.dart';
+import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
-import 'package:dribbble_clone/view/forgot_password_email/forgot_password_email_view.dart';
+import 'package:dribbble_clone/view/forgot_password_pin/forgot_password_pin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'stores/forgot_password_stores.dart';
-import '../../core/helper/app_localizations.dart';
+import 'stores/forgot_password_email_stores.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-
+class ForgotPasswordEmailView extends StatelessWidget {
   var _newPasswordFocus = FocusNode(), _confirmPasswordFocus = FocusNode();
-  var _forgotPasswordStores = locator<ForgotPasswordStores>();
+  var _forgotPasswordEmailStores = locator<ForgotPasswordEmailStores>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,32 +58,39 @@ class ForgotPasswordView extends StatelessWidget {
                       child: Image.asset('assets/images/logo.png', width: size.width * 0.6, height: size.width * 0.15,)
                     ),
                     SizedBox(height: size.width * 0.16,),
-                    Text(buildTranslate(context, 'new_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                    Text('Email', style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
                     SizedBox(height: 6,),
                     CustomTextField(
                       borderRadius: Dimens.half_circle,
-                      onChanged: (value) => _forgotPasswordStores.changeNewPassword(value),
+                      onChanged: (value) => _forgotPasswordEmailStores.changeEmail(value),
                       focusNode: _newPasswordFocus,
-                      onEditingComplete: () => FocusScope.of(context).requestFocus(_confirmPasswordFocus),
-                      inputType: TextInputType.text,
-                      textInputAction: TextInputAction.next,
-                      isObsecure: true
-                    ),
-                    SizedBox(height: 14,),
-                    Text(buildTranslate(context, 'confirm_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
-                    SizedBox(height: 6,),
-                    CustomTextField(
-                      borderRadius: Dimens.half_circle,
-                      onChanged: (value) => _forgotPasswordStores.changeConfirmPassword(value),
-                      focusNode: _confirmPasswordFocus,
                       onEditingComplete: () => FocusScope.of(context).requestFocus(FocusNode()),
                       inputType: TextInputType.text,
                       textInputAction: TextInputAction.done,
-                      isObsecure: true
+                      isObsecure: false
+                    ),
+                    Opacity(
+                      opacity: 0,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 14,),
+                          Text(buildTranslate(context, 'confirm_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                          SizedBox(height: 6,),
+                          CustomTextField(
+                            borderRadius: Dimens.half_circle,
+                            onChanged: (value) {},
+                            focusNode: _confirmPasswordFocus,
+                            onEditingComplete: () => FocusScope.of(context).requestFocus(FocusNode()),
+                            inputType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            isObsecure: true
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(height: size.width * 0.4,),
                     Parent(
-                      gesture: Gestures()..onTap(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordEmailView()))),
+                      gesture: Gestures()..onTap(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPinView()))),
                       style: ParentStyle()..linearGradient(colors: [
                         Color(0xFF005da0), Color(0xFF67c3ce),
                       ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)

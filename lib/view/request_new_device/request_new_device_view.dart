@@ -1,18 +1,16 @@
 import 'package:division/division.dart';
+import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
-import 'package:dribbble_clone/view/forgot_password_email/forgot_password_email_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'stores/forgot_password_stores.dart';
-import '../../core/helper/app_localizations.dart';
+import 'stores/request_new_device_stores.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-
-  var _newPasswordFocus = FocusNode(), _confirmPasswordFocus = FocusNode();
-  var _forgotPasswordStores = locator<ForgotPasswordStores>();
+class RequestNewDeviceView extends StatelessWidget {
+  var _emailFocus = FocusNode(), _passwordFocus = FocusNode();
+  var _requestNewDeviceStores = locator<RequestNewDeviceStores>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class ForgotPasswordView extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 3),
-                  child: Text(buildTranslate(context, 'forgot_password_title'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644))),
+                  child: Text(buildTranslate(context, 'request_new_device'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644))),
                 )
               ),
             ],
@@ -59,24 +57,24 @@ class ForgotPasswordView extends StatelessWidget {
                       child: Image.asset('assets/images/logo.png', width: size.width * 0.6, height: size.width * 0.15,)
                     ),
                     SizedBox(height: size.width * 0.16,),
-                    Text(buildTranslate(context, 'new_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                    Text(buildTranslate(context, 'username_email'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
                     SizedBox(height: 6,),
                     CustomTextField(
                       borderRadius: Dimens.half_circle,
-                      onChanged: (value) => _forgotPasswordStores.changeNewPassword(value),
-                      focusNode: _newPasswordFocus,
-                      onEditingComplete: () => FocusScope.of(context).requestFocus(_confirmPasswordFocus),
+                      onChanged: (value) => _requestNewDeviceStores.changeEmail(value),
+                      focusNode: _emailFocus,
+                      onEditingComplete: () => FocusScope.of(context).requestFocus(_passwordFocus),
                       inputType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       isObsecure: true
                     ),
                     SizedBox(height: 14,),
-                    Text(buildTranslate(context, 'confirm_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                    Text(buildTranslate(context, 'password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
                     SizedBox(height: 6,),
                     CustomTextField(
                       borderRadius: Dimens.half_circle,
-                      onChanged: (value) => _forgotPasswordStores.changeConfirmPassword(value),
-                      focusNode: _confirmPasswordFocus,
+                      onChanged: (value) => _requestNewDeviceStores.changePassword(value),
+                      focusNode: _passwordFocus,
                       onEditingComplete: () => FocusScope.of(context).requestFocus(FocusNode()),
                       inputType: TextInputType.text,
                       textInputAction: TextInputAction.done,
@@ -84,13 +82,13 @@ class ForgotPasswordView extends StatelessWidget {
                     ),
                     SizedBox(height: size.width * 0.4,),
                     Parent(
-                      gesture: Gestures()..onTap(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordEmailView()))),
+                      gesture: Gestures()..onTap(() {}),
                       style: ParentStyle()..linearGradient(colors: [
                         Color(0xFF005da0), Color(0xFF67c3ce),
                       ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
                         ..ripple(true)..borderRadius(all: Dimens.half_circle),
                       child: Center(
-                        child: Text(buildTranslate(context, 'send'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                        child: Text(buildTranslate(context, 'request'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
                       ),
                     ),
                   ],
