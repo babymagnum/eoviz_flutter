@@ -14,18 +14,20 @@ class BerandaMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final size = MediaQuery.of(context).size;
+
     return Column(
       children: <Widget>[
         Parent(
           gesture: Gestures()..onTap(onClick),
           style: ParentStyle()..borderRadius(all: 10)..background.color(Colors.white)..boxShadow(color: Colors.black.withOpacity(0.1), offset: Offset(1, 4), blur: 6)
-            ..ripple(true)..height(MediaQuery.of(context).size.width * 0.15),
+            ..ripple(true)..height(MediaQuery.of(context).size.width * 0.14),
           child: Center(
-            child: Image.asset(image, width: 36, height: 36,),
+            child: Image.asset(image, width: size.width * 0.09, height: size.width * 0.09,),
           ),
         ),
-        SizedBox(height: 9,),
-        Text(buildTranslate(context, title), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsRegular.apply(fontSizeDelta: -5, color: Color(0xFF253644)),)
+        SizedBox(height: size.width * 0.024,),
+        Text(buildTranslate(context, title), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsRegular.apply(fontSizeDelta: size.width * 0.027, color: Color(0xFF253644)),)
       ],
     );
   }

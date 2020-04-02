@@ -1,6 +1,7 @@
 import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
+import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
 import 'package:dribbble_clone/view/beranda/widgets/beranda_menu_item.dart';
@@ -54,28 +55,28 @@ class _BerandaViewState extends State<BerandaView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(width: double.infinity, height: MediaQuery.of(context).padding.top + 28,),
+                  SizedBox(width: double.infinity, height: MediaQuery.of(context).padding.top + size.width * 0.07,),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.078),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('${buildTranslate(context, 'halo')} Sandra.', style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                        Text('${buildTranslate(context, 'halo')} Sandra.', style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),),
                         Expanded(
-                          child: Text(_berandaStores.currentTime, textAlign: TextAlign.right, style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: 4, color: Colors.white),)
+                          child: Text(_berandaStores.currentTime, textAlign: TextAlign.right, style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.05, color: Colors.white),)
                         )
                       ],
                     ),
                   ),
-                  SizedBox(height: 11,),
+                  SizedBox(height: size.width * 0.027,),
                   Padding(
-                    padding: EdgeInsets.only(left: 32),
-                    child: Text('Shift I', style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                    padding: EdgeInsets.only(left: size.width * 0.078),
+                    child: Text('Shift I', style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white, fontSizeDelta: size.width * 0.04),),
                   ),
                   SizedBox(height: 8,),
                   Padding(
-                    padding: EdgeInsets.only(left: 32),
-                    child: Text('Terlambat & Tidak Memenuhi', style: ThemeTextStyle.poppinsBold.apply(color: Colors.white),),
+                    padding: EdgeInsets.only(left: size.width * 0.078),
+                    child: Text('Terlambat & Tidak Memenuhi', style: ThemeTextStyle.poppinsBold.apply(color: Colors.white, fontSizeDelta: size.width * 0.04),),
                   ),
                   SizedBox(height: 26,),
                   Stack(
@@ -87,12 +88,12 @@ class _BerandaViewState extends State<BerandaView> {
                           children: <Widget>[
                             SizedBox(height: 68,),
                             Container(
-                              height: 120, width: double.infinity,
+                              height: size.width * 0.31, width: double.infinity,
                               child: PageView(
                                 controller: PageController(viewportFraction: 0.84),
                                 children: <Widget>[
                                   Parent(
-                                    style: ParentStyle()..width(double.infinity)..height(120)..borderRadius(all: 15)
+                                    style: ParentStyle()..width(double.infinity)..height(size.width * 0.29)..borderRadius(all: 15)
                                       ..linearGradient(colors: [Color(0xFF005da0), Color(0xFF67c3ce)], begin: Alignment.topLeft, end: Alignment.bottomRight)
                                       ..margin(right: 14)..padding(left: 20, right: 24, top: 16),
                                     child: Row(
@@ -102,15 +103,15 @@ class _BerandaViewState extends State<BerandaView> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
-                                              Image.asset('assets/images/ic_clock.png', width: 32, height: 32,),
+                                              Image.asset('assets/images/ic_clock.png', width: size.width * 0.08, height: size.width * 0.08,),
                                               SizedBox(height: 12,),
-                                              Text(buildTranslate(context, 'percentage_npresence'), maxLines: 2, overflow: TextOverflow.ellipsis, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: -2, color: Colors.white),)
+                                              Text(buildTranslate(context, 'percentage_npresence'), maxLines: 2, overflow: TextOverflow.ellipsis, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, color: Colors.white),)
                                             ],
                                           )
                                         ),
                                         SizedBox(width: 10,),
                                         CircularPercentIndicator(
-                                          radius: 80,
+                                          radius: size.width * 0.2,
                                           lineWidth: 8,
                                           percent: 0.7,
                                           animation: true,
@@ -120,13 +121,13 @@ class _BerandaViewState extends State<BerandaView> {
                                           //arcType: ArcType.FULL,
                                           //arcBackgroundColor: Colors.white,
                                           backgroundColor: Colors.white,
-                                          center: Text("71%", style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: 4, color: Colors.white),),
+                                          center: Text("71%", style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.05, color: Colors.white),),
                                         )
                                       ],
                                     ),
                                   ),
                                   Parent(
-                                    style: ParentStyle()..width(double.infinity)..height(120)..borderRadius(all: 15)
+                                    style: ParentStyle()..width(double.infinity)..height(size.width * 0.29)..borderRadius(all: 15)
                                       ..linearGradient(colors: [Color(0xFF04aaa0), Color(0xFF73e4dd)], begin: Alignment.topLeft, end: Alignment.bottomRight)
                                       ..padding(left: 20, right: 24, top: 16),
                                     child: Row(
@@ -136,15 +137,15 @@ class _BerandaViewState extends State<BerandaView> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
-                                              Image.asset('assets/images/ic_koper.png', width: 32, height: 32,),
+                                              Image.asset('assets/images/ic_koper.png', width: size.width * 0.08, height: size.width * 0.08,),
                                               SizedBox(height: 12,),
-                                              Text(buildTranslate(context, 'leave_nquota'), maxLines: 2, overflow: TextOverflow.ellipsis, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: -2, color: Colors.white),)
+                                              Text(buildTranslate(context, 'leave_nquota'), maxLines: 2, overflow: TextOverflow.ellipsis, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, color: Colors.white),)
                                             ],
                                           )
                                         ),
                                         SizedBox(width: 10,),
                                         CircularPercentIndicator(
-                                          radius: 80,
+                                          radius: size.width * 0.2,
                                           lineWidth: 8,
                                           percent: 12/16,
                                           animation: true,
@@ -154,7 +155,7 @@ class _BerandaViewState extends State<BerandaView> {
                                           //arcType: ArcType.FULL,
                                           //arcBackgroundColor: Colors.white,
                                           backgroundColor: Colors.white,
-                                          center: Text('12', style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: 4, color: Colors.white),),
+                                          center: Text('12', style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.05, color: Colors.white),),
                                         )
                                       ],
                                     ),
@@ -209,8 +210,8 @@ class _BerandaViewState extends State<BerandaView> {
                         left: 32,
                         child: PlaceholderNetworkImage(
                           url: 'https://themes.themewaves.com/nuzi/wp-content/uploads/sites/4/2013/05/Team-Member-3.jpg',
-                          size: Size(80, 80),
-                          borderRadius: 40
+                          size: Size(size.width * 0.2, size.width * 0.2),
+                          borderRadius: Dimens.half_circle
                         ),
                       )
                     ],

@@ -48,23 +48,23 @@ class _ForgotPasswordPinViewState extends State<ForgotPasswordPinView> {
           body: Column(
             children: <Widget>[
               SizedBox(height: MediaQuery.of(context).padding.top + 36),
-              Stack(
-                children: <Widget>[
-                  Positioned(
-                    left: 30,
-                    child: GestureDetector(
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  children: <Widget>[
+                    GestureDetector(
                       onTap: () => Navigator.of(context).pop(),
                       child: Image.asset('assets/images/back_button_circle.png', width: 30, height: 30,)
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 3),
-                      child: Text(buildTranslate(context, 'forgot_password_title'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644))),
+                    Expanded(
+                      child: Text(buildTranslate(context, 'forgot_password_title'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04))
+                    ),
+                    Opacity(
+                      opacity: 0,
+                      child: Image.asset('assets/images/back_button_circle.png', width: 30, height: 30,),
                     )
-                  ),
-                ],
+                  ],
+                ),
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -81,7 +81,7 @@ class _ForgotPasswordPinViewState extends State<ForgotPasswordPinView> {
                         SizedBox(height: size.width * 0.16,),
                         Text(buildTranslate(context, 'please_check_your_email_to_get_the_code'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: -2),),
                         SizedBox(height: 13,),
-                        Text(buildTranslate(context, 'code_verification'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                        Text(buildTranslate(context, 'code_verification'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04),),
                         SizedBox(height: 19,),
                         Row(
                           children: <Widget>[
@@ -157,7 +157,7 @@ class _ForgotPasswordPinViewState extends State<ForgotPasswordPinView> {
                         SizedBox(height: 8,),
                         Align(
                           alignment: Alignment.center,
-                          child: Text('${_forgotPasswordPinStores.minutes.toString().length == 1 ? '0${_forgotPasswordPinStores.minutes}' : '${_forgotPasswordPinStores.minutes}'}:${_forgotPasswordPinStores.seconds.toString().length == 1 ? '0${_forgotPasswordPinStores.seconds}' : '${_forgotPasswordPinStores.seconds}'}', style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: -2),)
+                          child: Text('${_forgotPasswordPinStores.minutes.toString().length == 1 ? '0${_forgotPasswordPinStores.minutes}' : '${_forgotPasswordPinStores.minutes}'}:${_forgotPasswordPinStores.seconds.toString().length == 1 ? '0${_forgotPasswordPinStores.seconds}' : '${_forgotPasswordPinStores.seconds}'}', style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.035),)
                         ),
                         SizedBox(height: size.width * 0.39,),
                         Parent(
@@ -167,7 +167,7 @@ class _ForgotPasswordPinViewState extends State<ForgotPasswordPinView> {
                           ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
                             ..ripple(true)..borderRadius(all: Dimens.half_circle),
                           child: Center(
-                            child: Text(buildTranslate(context, 'submit'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                            child: Text(buildTranslate(context, 'submit'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white, fontSizeDelta: size.width * 0.04),),
                           ),
                         ),
                       ],

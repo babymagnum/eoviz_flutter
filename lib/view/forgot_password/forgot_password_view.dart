@@ -41,7 +41,7 @@ class ForgotPasswordView extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 3),
-                  child: Text(buildTranslate(context, 'forgot_password_title'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644))),
+                  child: Text(buildTranslate(context, 'forgot_password_title'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04)),
                 )
               ),
             ],
@@ -59,7 +59,7 @@ class ForgotPasswordView extends StatelessWidget {
                       child: Image.asset('assets/images/logo.png', width: size.width * 0.6, height: size.width * 0.15,)
                     ),
                     SizedBox(height: size.width * 0.16,),
-                    Text(buildTranslate(context, 'new_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                    Text(buildTranslate(context, 'new_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04),),
                     SizedBox(height: 6,),
                     CustomTextField(
                       borderRadius: Dimens.half_circle,
@@ -71,7 +71,7 @@ class ForgotPasswordView extends StatelessWidget {
                       isObsecure: true
                     ),
                     SizedBox(height: 14,),
-                    Text(buildTranslate(context, 'confirm_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644)),),
+                    Text(buildTranslate(context, 'confirm_password'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04),),
                     SizedBox(height: 6,),
                     CustomTextField(
                       borderRadius: Dimens.half_circle,
@@ -90,7 +90,7 @@ class ForgotPasswordView extends StatelessWidget {
                       ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
                         ..ripple(true)..borderRadius(all: Dimens.half_circle),
                       child: Center(
-                        child: Text(buildTranslate(context, 'send'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                        child: Text(buildTranslate(context, 'send'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white, fontSizeDelta: size.width * 0.04),),
                       ),
                     ),
                   ],

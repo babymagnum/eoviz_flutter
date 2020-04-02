@@ -25,36 +25,39 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         onTap: (index) => onItemTapped(index),
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/ic_home.png', width: 18, height: 18, color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644)),
+            icon: Image.asset('assets/images/ic_home.png', width: size.width * 0.045, height: size.width * 0.045, color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(buildTranslate(context, 'home'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+              child: Text(buildTranslate(context, 'home'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: size.width * 0.027)),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_turned_in, size: 18, color: _selectedIndex == 1 ? Color(0xFF347eb2) : Color(0xFF253644)),
+            icon: Icon(Icons.assignment_turned_in, size: size.width * 0.045, color: _selectedIndex == 1 ? Color(0xFF347eb2) : Color(0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(buildTranslate(context, 'approval'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 1 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+              child: Text(buildTranslate(context, 'approval'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 1 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: size.width * 0.027)),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/ic_notifikasi.png', width: 18, height: 18, color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644)),
+            icon: Image.asset('assets/images/ic_notifikasi.png', width: size.width * 0.045, height: size.width * 0.045, color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(buildTranslate(context, 'notification'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+              child: Text(buildTranslate(context, 'notification'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: size.width * 0.027)),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/ic_profil.png', width: 18, height: 18, color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644)),
+            icon: Image.asset('assets/images/ic_profil.png', width: size.width * 0.045, height: size.width * 0.045, color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(buildTranslate(context, 'profile'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+              child: Text(buildTranslate(context, 'profile'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: size.width * 0.027)),
             ),
           ),
         ]
