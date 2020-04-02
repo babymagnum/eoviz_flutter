@@ -89,7 +89,7 @@ class _BerandaViewState extends State<BerandaView> {
                             Container(
                               height: 120, width: double.infinity,
                               child: PageView(
-                                controller: PageController(viewportFraction: 0.81),
+                                controller: PageController(viewportFraction: 0.84),
                                 children: <Widget>[
                                   Parent(
                                     style: ParentStyle()..width(double.infinity)..height(120)..borderRadius(all: 15)
@@ -172,7 +172,7 @@ class _BerandaViewState extends State<BerandaView> {
                                     child: BerandaMenuItem(
                                       title: 'presence',
                                       image: 'assets/images/ic_presensi.png',
-                                      onClick: () => print('presensi click')
+                                      onClick: () => print('presensi click'),
                                     )
                                   ),
                                   SizedBox(width: 23,),
@@ -180,7 +180,7 @@ class _BerandaViewState extends State<BerandaView> {
                                     child: BerandaMenuItem(
                                       title: 'exchange_shift',
                                       image: 'assets/images/ic_tukar_shift.png',
-                                      onClick: () => print('tukar shift click')
+                                      onClick: () => print('tukar shift click'),
                                     )
                                   ),
                                   SizedBox(width: 23,),
@@ -188,7 +188,7 @@ class _BerandaViewState extends State<BerandaView> {
                                     child: BerandaMenuItem(
                                       title: 'permission_and_leave',
                                       image: 'assets/images/ic_izin_cuti.png',
-                                      onClick: () => print('izin cuti click')
+                                      onClick: () => print('izin cuti click'),
                                     )
                                   ),
                                   SizedBox(width: 23,),
@@ -196,7 +196,7 @@ class _BerandaViewState extends State<BerandaView> {
                                     child: BerandaMenuItem(
                                       title: 'team_working_hours',
                                       image: 'assets/images/ic_jam_kerja.png',
-                                      onClick: () => print('jam kerja click')
+                                      onClick: () => print('jam kerja click'),
                                     )
                                   ),
                                 ],

@@ -13,12 +13,13 @@ class BerandaMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: <Widget>[
         Parent(
           gesture: Gestures()..onTap(onClick),
           style: ParentStyle()..borderRadius(all: 10)..background.color(Colors.white)..boxShadow(color: Colors.black.withOpacity(0.1), offset: Offset(1, 4), blur: 6)
-            ..ripple(true)..width(57)..height(54),
+            ..ripple(true)..height(MediaQuery.of(context).size.width * 0.15),
           child: Center(
             child: Image.asset(image, width: 36, height: 36,),
           ),
