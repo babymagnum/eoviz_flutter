@@ -1,5 +1,6 @@
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/constant.dart';
+import 'package:dribbble_clone/core/helper/fallback_cupertino_localisations_delegate.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/helper/router.dart';
 import 'package:dribbble_clone/core/theme/theme_color.dart';
@@ -84,6 +85,7 @@ class _MyAppState extends State<MyApp> {
         AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        FallbackCupertinoLocalisationsDelegate()
       ],
       supportedLocales: [
         Locale(Constant.ENGLISH),

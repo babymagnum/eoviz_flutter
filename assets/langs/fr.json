@@ -1,4 +1,8 @@
 {
+  "change_shift": "Tukar Shift",
+  "password_is_empty": "Kata sandi masih kosong",
+  "understand": "Mengerti",
+  "email_is_empty": "Email masih kosong",
   "submit": "Kirim",
   "username_email": "Nama pengguna/Email",
   "password": "Kata Sandi",

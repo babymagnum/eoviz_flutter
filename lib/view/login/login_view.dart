@@ -80,14 +80,16 @@ class LoginView extends StatelessWidget {
                 isObsecure: true
               ),
               SizedBox(height: 44,),
-              Parent(
-                gesture: Gestures()..onTap(() {}),
-                style: ParentStyle()..linearGradient(colors: [
-                  Color(0xFF005da0), Color(0xFF67c3ce),
-                ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
-                  ..ripple(true)..borderRadius(all: Dimens.half_circle),
-                child: Center(
-                  child: Text(buildTranslate(context, 'login'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+              Builder(
+                builder: (context) => Parent(
+                  gesture: Gestures()..onTap(() => _loginStores.login(context)),
+                  style: ParentStyle()..linearGradient(colors: [
+                    Color(0xFF005da0), Color(0xFF67c3ce),
+                  ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
+                    ..ripple(true)..borderRadius(all: Dimens.half_circle),
+                  child: Center(
+                    child: Text(buildTranslate(context, 'login'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white),),
+                  ),
                 ),
               ),
               SizedBox(height: 24,),

@@ -1,5 +1,10 @@
-import 'package:dribbble_clone/view/screen1/screen1_view.dart';
-import 'package:dribbble_clone/view/screen2/screen2_view.dart';
+import 'package:dribbble_clone/core/helper/app_localizations.dart';
+import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/view/beranda/beranda_view.dart';
+import 'package:dribbble_clone/view/notifikasi/notifikasi_view.dart';
+import 'package:dribbble_clone/view/persetujuan/persetujuan_view.dart';
+import 'package:dribbble_clone/view/profil/profil_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../core/theme/theme_color.dart';
 
@@ -13,59 +18,50 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  var selectedIndex = 0;
-  List<Widget> _listScreen = [Screen1View(), Screen2View()];
+  var _selectedIndex = 0;
+  List<Widget> _listScreen = [BerandaView(), PersetujuanView(), NotifikasiView(), ProfilView()];
 
-  onItemTapped(int index) async {
-    if (index == 3) {
-      // do something
-    } else {
-      setState(() => selectedIndex = index);
-    }
-  }
+  onItemTapped(int index) => setState(() => _selectedIndex = index);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: selectedIndex,
-        children: _listScreen,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        onTap: (index) => onItemTapped(index),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              size: 20,
-              color: selectedIndex == 0 ? ThemeColor.orange : ThemeColor.dark_grey,
-            ),
+            icon: Image.asset('assets/images/ic_home.png', width: 18, height: 18, color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(
-                'Screen 1',
-              ),
+              child: Text(buildTranslate(context, 'home'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 0 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              size: 20,
-              color: selectedIndex == 1 ? ThemeColor.orange : ThemeColor.dark_grey,
-            ),
+            icon: Icon(Icons.assignment_turned_in, size: 18, color: _selectedIndex == 1 ? Color(0xFF347eb2) : Color(0xFF253644)),
             title: Padding(
               padding: EdgeInsets.only(top: 3),
-              child: Text(
-                'Screen 2',
-              ),
+              child: Text(buildTranslate(context, 'approval'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 1 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
             ),
           ),
-        ],
-        currentIndex: selectedIndex,
-        selectedItemColor: ThemeColor.orange,
-        onTap: onItemTapped,
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/ic_notifikasi.png', width: 18, height: 18, color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644)),
+            title: Padding(
+              padding: EdgeInsets.only(top: 3),
+              child: Text(buildTranslate(context, 'notification'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 2 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/ic_profil.png', width: 18, height: 18, color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644)),
+            title: Padding(
+              padding: EdgeInsets.only(top: 3),
+              child: Text(buildTranslate(context, 'profile'), style: ThemeTextStyle.poppinsLight.apply(color: Color(_selectedIndex == 3 ? 0xFF347eb2 : 0xFF253644), fontSizeDelta: -5)),
+            ),
+          ),
+        ]
       ),
+      tabBuilder: (context, index) {
+        return _listScreen[index];
+      }
     );
   }
 }

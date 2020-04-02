@@ -81,4 +81,14 @@ mixin _$LoginStores on _LoginStores, Store {
       _$_LoginStoresActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  dynamic login(dynamic context) {
+    final _$actionInfo = _$_LoginStoresActionController.startAction();
+    try {
+      return super.login(context);
+    } finally {
+      _$_LoginStoresActionController.endAction(_$actionInfo);
+    }
+  }
 }

@@ -1,4 +1,8 @@
 {
+  "change_shift": "Change Shift",
+  "password_is_empty": "Password is empty",
+  "understand": "Understand",
+  "email_is_empty": "Email is empty",
   "submit": "Submit",
   "username_email": "Username/Email",
   "password": "Password",
