@@ -1,4 +1,9 @@
 {
+  "old_password_is_empty": "Old password is empty.",
+  "new_password_is_empty": "New password is empty.",
+  "confirm_new_password_is_empty": "Confirmation new password is empty.",
+  "new_password_not_match": "New Password not match.",
+  "change_password2": "Change Password",
   "change_profile_photo": "Change Profile Photo",
   "there_are_no_notifications_yet": "There are no notification yet.",
   "change_shift": "Change Shift",

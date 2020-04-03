@@ -6,6 +6,7 @@ import '../../view/request_new_device/stores/request_new_device_stores.dart';
 import '../../view/beranda/stores/beranda_stores.dart';
 import '../../view/notifikasi/stores/notifikasi_stores.dart';
 import '../../view/profil/stores/profil_stores.dart';
+import '../../view/change_password/stores/change_password_stores.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.I;
@@ -30,4 +31,5 @@ void setupLocator() {
   locator.registerLazySingleton<BerandaStores>(() => BerandaStores());
   locator.registerLazySingleton<NotifikasiStores>(() => NotifikasiStores());
   locator.registerLazySingleton<ProfilStores>(() => ProfilStores());
+  locator.registerLazySingleton<ChangePasswordStores>(() => ChangePasswordStores());
 }

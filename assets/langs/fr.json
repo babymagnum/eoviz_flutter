@@ -1,4 +1,9 @@
 {
+  "old_password_is_empty": "Kata sandi lama masih kosong.",
+  "new_password_is_empty": "Kata sandi baru masih kosong.",
+  "confirm_new_password_is_empty": "Konfirmasi kata sandi baru masih kosong.",
+  "new_password_not_match": "Password baru tidak sama.",
+  "change_password2": "Ganti Kata Sandi",
   "change_profile_photo": "Ubah Foto Profil",
   "there_are_no_notifications_yet": "Belum ada notifikasi.",
   "change_shift": "Tukar Shift",
@@ -94,7 +99,7 @@
   "canceled": "Dibatalkan",
   "you_re_in_the_zone": "Kamu berada di area presensi!",
   "hurry_up_you_are_out_of_the_presence_area": "Cepat, kamu di luar area presensi!",
-  "change_password": "Ganti Kata Sandi",
+  "change_password": "Ubah Kata Sandi",
   "nip": "NIP",
   "position": "Posisi",
   "unit": "Unit",

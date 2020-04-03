@@ -9,6 +9,7 @@ import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
 import 'package:dribbble_clone/view/profil/widgets/bottom_sheet_ubah_foto.dart';
+import 'package:dribbble_clone/view/settings/settings_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -43,9 +44,9 @@ class _ProfilViewState extends State<ProfilView> {
 
   _takePicture(context) async {
     try {
-      final path = join((await getTemporaryDirectory()).path, "${DateTime.now()}.png",);
+      final path = join((await getTemporaryDirectory()).path, '${DateTime.now()}.png',);
 
-      if (path != null && path == "") {
+      if (path != null && path == '') {
         return;
       }
 
@@ -118,7 +119,10 @@ class _ProfilViewState extends State<ProfilView> {
                         Expanded(
                           child: Text(buildTranslate(context, 'profile'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
                         ),
-                        Image.asset('assets/images/ic_settings.png', width: size.width * 0.06, height: size.width * 0.06,)
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SettingsView())),
+                          child: Image.asset('assets/images/ic_settings.png', width: size.width * 0.06, height: size.width * 0.06,)
+                        )
                       ],
                     ),
                   ),

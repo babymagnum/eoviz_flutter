@@ -40,15 +40,4 @@ class CommonFunctions {
     showDialog(context: context, child: alert);
   }
 
-  static void showLoadingDialog(context) {
-
-    final size = MediaQuery.of(context).size;
-
-    Navigator.of(context).push(PageRouteBuilder(pageBuilder: (context, _, __) => Parent(
-      style: ParentStyle()..background.color(Colors.black.withOpacity(0.3))..margin(horizontal: size.width * 0.5 - 45, vertical: size.height * 0.5 - 45)
-        ..borderRadius(all: 5),
-      child: CupertinoActivityIndicator(radius: 20),
-    ), opaque: false));
-  }
-
 }
