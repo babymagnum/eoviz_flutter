@@ -40,8 +40,8 @@ class _SplashViewState extends State<SplashView> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF005da0),
-                    Color(0xFF67c3ce),
+                    Color(0xFF005da0).withOpacity(0.8),
+                    Color(0xFF67c3ce).withOpacity(0.8),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

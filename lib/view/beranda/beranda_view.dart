@@ -6,6 +6,7 @@ import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
 import 'package:dribbble_clone/view/beranda/widgets/beranda_menu_item.dart';
+import 'package:dribbble_clone/view/presensi/presensi_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -101,7 +102,7 @@ class _BerandaViewState extends State<BerandaView> {
                                     children: <Widget>[
                                       Parent(
                                         style: ParentStyle()..width(double.infinity)..height(size.width * 0.29)..borderRadius(all: 15)
-                                          ..linearGradient(colors: [Color(0xFF005da0), Color(0xFF67c3ce)], begin: Alignment.topLeft, end: Alignment.bottomRight)
+                                          ..linearGradient(colors: [Color(0xFF005da0).withOpacity(0.8), Color(0xFF67c3ce).withOpacity(0.8)], begin: Alignment.topLeft, end: Alignment.bottomRight)
                                           ..margin(right: 14)..padding(left: 20, right: 24, top: 16),
                                         child: Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +136,7 @@ class _BerandaViewState extends State<BerandaView> {
                                       ),
                                       Parent(
                                         style: ParentStyle()..width(double.infinity)..height(size.width * 0.29)..borderRadius(all: 15)
-                                          ..linearGradient(colors: [Color(0xFF04aaa0), Color(0xFF73e4dd)], begin: Alignment.topLeft, end: Alignment.bottomRight)
+                                          ..linearGradient(colors: [Color(0xFF04aaa0).withOpacity(0.8), Color(0xFF73e4dd).withOpacity(0.8)], begin: Alignment.topLeft, end: Alignment.bottomRight)
                                           ..padding(left: 20, right: 24, top: 16),
                                         child: Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +181,7 @@ class _BerandaViewState extends State<BerandaView> {
                                         child: BerandaMenuItem(
                                           title: 'presence',
                                           image: 'assets/images/ic_presensi.png',
-                                          onClick: () => print('presensi click'),
+                                          onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => PresensiView())),
                                         )
                                       ),
                                       SizedBox(width: 23,),

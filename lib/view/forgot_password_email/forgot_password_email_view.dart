@@ -92,8 +92,8 @@ class ForgotPasswordEmailView extends StatelessWidget {
                     Parent(
                       gesture: Gestures()..onTap(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ForgotPasswordPinView()))),
                       style: ParentStyle()..linearGradient(colors: [
-                        Color(0xFF005da0), Color(0xFF67c3ce),
-                      ], begin: Alignment.centerLeft, end: Alignment.centerRight)..width(double.infinity)..padding(vertical: 13)
+                        Color(0xFF005da0).withOpacity(0.8), Color(0xFF67c3ce).withOpacity(0.8),
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight)..width(double.infinity)..padding(vertical: 13)
                         ..ripple(true)..borderRadius(all: Dimens.half_circle),
                       child: Center(
                         child: Text(buildTranslate(context, 'send'), style: ThemeTextStyle.poppinsMedium.apply(color: Colors.white, fontSizeDelta: size.width * 0.04),),
