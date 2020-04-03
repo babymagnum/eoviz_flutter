@@ -50,9 +50,7 @@ class _HomeViewState extends State<HomeView> {
           ),
         ]
       ),
-      tabBuilder: (context, index) {
-        return _listScreen[index];
-      }
+      tabBuilder: (context, index) => _listScreen[index]
     );
   }
 }
