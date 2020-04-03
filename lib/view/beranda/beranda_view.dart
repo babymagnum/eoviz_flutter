@@ -1,7 +1,6 @@
 import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
-import 'package:dribbble_clone/core/helper/text_util.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
@@ -27,7 +26,6 @@ class _BerandaViewState extends State<BerandaView> {
 
     Future.delayed(Duration.zero, () {
       if (_berandaStores.currentTime == '') _berandaStores.startTimerAndSetView();
-      else if (_berandaStores.currentTime.length > 6 && _berandaStores.currentTime.substring(0, 5) != TextUtil.getCurrentDate('HH:mm')) _berandaStores.startTimerAndSetView();
     });
 
     super.initState();

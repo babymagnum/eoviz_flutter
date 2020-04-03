@@ -15,14 +15,21 @@ abstract class _BerandaStores with Store {
   @observable
   String currentTime = '';
 
+  Timer _timer;
+
   @action
   startTimerAndSetView() {
+    if (_timer != null) _timer.cancel();
+
     var timeArray = TextUtil.getCurrentDate('HH:mm:ss').split(':');
     _hours = int.parse(timeArray[0]);
     _minutes = int.parse(timeArray[1]);
     _seconds = int.parse(timeArray[2]);
 
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+
+      if (currentTime.length >= 12 && currentTime.substring(0, 5) != TextUtil.getCurrentDate('HH:mm')) startTimerAndSetView();
+
       _seconds += 1;
 
       if (_seconds == 60) {

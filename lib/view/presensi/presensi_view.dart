@@ -3,6 +3,8 @@ import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/helper/text_util.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/view/presensi/widgets/jam_masuk_keluar.dart';
+import 'package:dribbble_clone/view/presensi_map/presensi_map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../beranda/stores/beranda_stores.dart';
@@ -10,16 +12,6 @@ import '../beranda/stores/beranda_stores.dart';
 class PresensiView extends StatelessWidget {
 
   var _berandaStores = locator<BerandaStores>();
-
-  Widget _jam(String title, String content, Size size) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 15,),
-        Text(title, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.027, color: Color(0xFF253644)),),
-        Text(content, style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.05, color: Color(0xFF347eb2)),)
-      ],
-    );
-  }
 
   Widget _buttonPresensi(context, List<Color> colors, String title, Function() onClick, Size size, image) {
     return Column(
@@ -95,46 +87,24 @@ class PresensiView extends StatelessWidget {
                             SizedBox(height: 3,),
                             Text(_berandaStores.currentTime, style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.08, color: Color(0xFF347eb2)),),
                             SizedBox(height: 33,),
-                            Stack(
-                              children: <Widget>[
-                                Parent(
-                                  style: ParentStyle()..border(all: 1, color: Color(0xFF347eb2))..borderRadius(all: 15)..width(double.infinity)
-                                    ..padding(horizontal: 28, bottom: 9)..margin(top: 15)..background.color(Colors.white),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: _jam(buildTranslate(context, 'entry_time'), '06:00:00', size)
-                                      ),
-                                      Expanded(
-                                        child: _jam(buildTranslate(context, 'out_time'), '14:00:00', size)
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Parent(
-                                    style: ParentStyle()..background.color(Color(0xFF347eb2))..borderRadius(all: 5)..height(size.width * 0.065)..margin(horizontal: size.width * 0.125),
-                                    child: Center(child: Text('Shift I', style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, color: Colors.white),)),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: size.width * 0.065, bottom: 1, left: (size.width - (38 * 2)) * 0.5 - 2,
-                                  child: Container(
-                                    width: 2, color: Color(0xFFeaeaea),
-                                  )
-                                )
-                              ],
-                            ),
+                            JamMasukKeluar(),
                             SizedBox(height: 24,),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  _buttonPresensi(context, [Color(0xFF005da0).withOpacity(0.8), Color(0xFF67c3ce).withOpacity(0.8)], 'in', () {}, size, 'assets/images/ic_presence_in.png'),
+                                  _buttonPresensi(
+                                    context, [Color(0xFF005da0).withOpacity(0.8), Color(0xFF67c3ce).withOpacity(0.8)],
+                                    'in', () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => PresensiMapView(typePresence: 'in',))),
+                                    size, 'assets/images/ic_presence_in.png'
+                                  ),
                                   SizedBox(width: 22,),
-                                  _buttonPresensi(context, [Color(0xFFb11309).withOpacity(0.8), Color(0xFFd95b5b).withOpacity(0.8)], 'out', () {}, size, 'assets/images/ic_presence_out.png'),
+                                  _buttonPresensi(
+                                    context, [Color(0xFFb11309).withOpacity(0.8), Color(0xFFd95b5b).withOpacity(0.8)],
+                                    'out', () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => PresensiMapView(typePresence: 'out',))),
+                                    size, 'assets/images/ic_presence_out.png'
+                                  ),
                                 ],
                               ),
                             )
