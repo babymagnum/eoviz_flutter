@@ -20,7 +20,7 @@ class ListNotifikasiItem extends StatelessWidget {
     return Parent(
       gesture: Gestures()..onTap(() {}),
       style: ParentStyle()..borderRadius(all: 20)..background.color(Colors.white)..padding(horizontal: 17, vertical: 15)..ripple(true)
-        ..margin(top: isFirst ? 40 : 15, bottom: isLast ? 15 : 0, horizontal: 32),
+        ..margin(top: isFirst ? 20 : 15, bottom: isLast ? 15 : 0, horizontal: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

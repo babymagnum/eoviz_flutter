@@ -2,33 +2,47 @@ import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
-import 'package:dribbble_clone/view/bahasa/bahasa_view.dart';
-import 'package:dribbble_clone/view/change_password/change_password_view.dart';
-import 'package:dribbble_clone/view/settings/widgets/pengaturan_menu_item.dart';
+import 'package:dribbble_clone/view/bahasa/widgets/bahasa_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../main.dart';
 
-class SettingsView extends StatefulWidget {
+class BahasaView extends StatefulWidget {
 
   @override
-  _SettingsViewState createState() => _SettingsViewState();
+  _BahasaViewState createState() => _BahasaViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _BahasaViewState extends State<BahasaView> {
+
   var _language = '';
 
   @override
   void initState() {
-
-    _getLanguage();
+    Future.delayed(Duration.zero, () {
+      SharedPreferences.getInstance().then((preference) {
+        if (preference.getString(Constant.LANGUANGE_CODE) == Constant.ENGLISH) _language = Constant.ENGLISH;
+        else _language = Constant.INDONESIAN;
+        setState(() {});
+      });
+    });
 
     super.initState();
   }
 
-  _getLanguage() async {
-    final preference = await SharedPreferences.getInstance();
-    if (preference.getString(Constant.LANGUANGE_CODE) == Constant.ENGLISH) _language = 'English';
-    else _language = 'Bahasa Indonesia';
+  _changeLanguage(String languageCode, context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(Constant.LANGUANGE_CODE, languageCode);
+    Locale locale;
+    switch (languageCode) {
+      case Constant.ENGLISH:
+        locale = Locale(languageCode);
+        break;
+      case Constant.INDONESIAN:
+        locale = Locale(languageCode);
+    }
+    MyApp.setLocale(context, locale);
+    _language = prefs.getString(Constant.LANGUANGE_CODE);
     setState(() {});
   }
 
@@ -64,7 +78,7 @@ class _SettingsViewState extends State<SettingsView> {
                         child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
                       ),
                       Expanded(
-                        child: Text(buildTranslate(context, 'settings'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
+                        child: Text(buildTranslate(context, 'language'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
                       ),
                       Opacity(
                         opacity: 0,
@@ -79,19 +93,19 @@ class _SettingsViewState extends State<SettingsView> {
                     style: ParentStyle()..width(double.infinity)..borderRadius(topLeft: 50, topRight: 50)..background.color(Color(0xFFf0f2f5)),
                     child: Column(
                       children: <Widget>[
-                        PengaturanMenuItem(
-                          onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ChangePasswordView())),
-                          image: 'assets/images/ic_change_password.png',
+                        BahasaItem(
+                          onClick: () => _changeLanguage(Constant.INDONESIAN, context),
+                          image: 'assets/images/ic_indonesia.png',
                           isFirst: true,
-                          content: null,
-                          title: 'change_password'
+                          title: 'Bahasa Indonesia (ID)',
+                          isPicked: _language == Constant.INDONESIAN,
                         ),
-                        PengaturanMenuItem(
-                          onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => BahasaView())),
-                          image: 'assets/images/ic_change_language.png',
+                        BahasaItem(
+                          onClick: () => _changeLanguage(Constant.ENGLISH, context),
+                          image: 'assets/images/ic_english.png',
                           isFirst: false,
-                          content: _language,
-                          title: 'language'
+                          isPicked: _language == Constant.ENGLISH,
+                          title: 'English (EN)'
                         )
                       ],
                     ),

@@ -1,19 +1,15 @@
 import 'dart:ui';
-
 import 'package:division/division.dart';
-import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
-import 'package:dribbble_clone/main.dart';
 import 'package:dribbble_clone/view/forgot_password/forgot_password_view.dart';
 import 'package:dribbble_clone/view/request_new_device/request_new_device_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'stores/login_stores.dart';
 import '../../core/helper/app_localizations.dart';
 
@@ -21,20 +17,6 @@ class LoginView extends StatelessWidget {
 
   FocusNode _emailFocus = FocusNode(), _passwordFocus = FocusNode();
   var _loginStores = locator<LoginStores>();
-
-  _changeLanguage(String languageCode, context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(Constant.LANGUANGE_CODE, languageCode);
-    Locale locale;
-    switch (languageCode) {
-      case Constant.ENGLISH:
-        locale = Locale(languageCode);
-        break;
-      case Constant.INDONESIAN:
-        locale = Locale(languageCode);
-    }
-    MyApp.setLocale(context, locale);
-  }
 
   @override
   Widget build(BuildContext context) {

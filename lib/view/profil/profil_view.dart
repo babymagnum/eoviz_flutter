@@ -126,7 +126,7 @@ class _ProfilViewState extends State<ProfilView> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 47,),
+                  SizedBox(height: size.width * 0.12,),
                   Expanded(
                     child: Stack(
                       children: <Widget>[
