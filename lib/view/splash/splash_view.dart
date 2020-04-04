@@ -1,6 +1,9 @@
+import 'package:dribbble_clone/core/helper/constant.dart';
+import 'package:dribbble_clone/view/home/home_view.dart';
 import 'package:dribbble_clone/view/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashView extends StatefulWidget {
 
@@ -16,7 +19,15 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
 
     Future.delayed(Duration(seconds: 1), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => LoginView()));
+
+      SharedPreferences.getInstance().then((preference) {
+        final isLogin = preference.getBool(Constant.IS_LOGIN) ?? false;
+        if (isLogin) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomeView()));
+        } else {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => LoginView()));
+        }
+      });
     });
 
     super.initState();

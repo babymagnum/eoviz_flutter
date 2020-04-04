@@ -1,9 +1,11 @@
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/common_functions.dart';
+import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/view/home/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_stores.g.dart';
 
@@ -38,7 +40,10 @@ abstract class _LoginStores with Store {
       Future.delayed(Duration(seconds: 2), () {
         isLoading = false;
 
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomeView()));
+        SharedPreferences.getInstance().then((preference) {
+          preference.setBool(Constant.IS_LOGIN, true);
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomeView()));
+        });
       });
     }
   }

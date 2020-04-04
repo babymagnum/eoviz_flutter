@@ -3,6 +3,9 @@ import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/success/success.dart';
+import '../../model/login/login.dart';
+import '../../model/forget_password/forget_password.dart';
+import '../../model/home/home.dart';
 import 'dart:convert';
 
 class BaseService {
@@ -27,10 +30,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -51,10 +50,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -74,10 +69,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -99,10 +90,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -126,10 +113,6 @@ class BaseService {
         resultResponse = List();
       }
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       //var responseMap = jsonDecode(e.response.toString());
       resultResponse = List();
@@ -150,10 +133,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -174,10 +153,6 @@ class BaseService {
       var responseMap = jsonDecode(response.toString());
       resultResponse = fromJson<T>(responseMap);
     } on DioError catch (e) {
-      if (e.response.statusCode == 302 && e.response.toString().contains('http://plis.id/plis_api/login')) {
-        final preference = await SharedPreferences.getInstance();
-        preference.clear();
-      }
       print('ResponseError: ${e.response.toString()}');
       var responseMap = jsonDecode(e.response.toString());
       resultResponse = fromJson<T>(responseMap);
@@ -192,6 +167,12 @@ class BaseService {
       return _fromJsonList<T>(json) as T;
     } else if (T == Success) {
       return Success.fromJson(json) as T;
+    } else if (T == Login) {
+      return Login.fromJson(json) as T;
+    } else if (T == ForgetPassword) {
+      return ForgetPassword.fromJson(json) as T;
+    } else if (T == Home) {
+      return Home.fromJson(json) as T;
     } else {
       // if this print statement occured, this means that you're not register the model class in here
       print('Unknown class, dont forget to add your model in BaseService.dart to parse the json');

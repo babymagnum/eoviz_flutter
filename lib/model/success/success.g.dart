@@ -7,7 +7,8 @@ part of 'success.dart';
 // **************************************************************************
 
 Success _$SuccessFromJson(Map<String, dynamic> json) {
-  return Success(json['status'] as String, json['message'] as String);
+  return Success(json['status'] as bool,
+      (json['message'] as List)?.map((e) => e as String)?.toList());
 }
 
 Map<String, dynamic> _$SuccessToJson(Success instance) =>
