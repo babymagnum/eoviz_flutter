@@ -3,15 +3,19 @@ import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/helper/text_util.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/view/daftar_presensi/daftar_presensi_view.dart';
 import 'package:dribbble_clone/view/presensi/widgets/jam_masuk_keluar.dart';
 import 'package:dribbble_clone/view/presensi_map/presensi_map_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../beranda/stores/beranda_stores.dart';
+import '../splash/stores/splash_stores.dart';
 
 class PresensiView extends StatelessWidget {
 
   var _berandaStores = locator<BerandaStores>();
+  var _splashStores = locator<SplashStores>();
 
   Widget _buttonPresensi(context, List<Color> colors, String title, Function() onClick, Size size, image) {
     return Column(
@@ -31,6 +35,9 @@ class PresensiView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 
@@ -68,7 +75,7 @@ class PresensiView extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 3),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => DaftarPresensiView())),
                             child: Image.asset('assets/images/ic_history.png', width: size.width * 0.06, height: size.width * 0.06,)
                           ),
                         ),
@@ -83,7 +90,7 @@ class PresensiView extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           children: <Widget>[
-                            Text('${TextUtil.getDay()}, ${TextUtil.getCurrentDate('dd MMMM yyyy')}', style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035),),
+                            Text('${TextUtil.getDay(_splashStores.preferences)}, ${TextUtil.getCurrentDate('dd MMMM yyyy')}', style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035),),
                             SizedBox(height: 3,),
                             Text(_berandaStores.currentTime, style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.08, color: Color(0xFF347eb2)),),
                             SizedBox(height: 33,),

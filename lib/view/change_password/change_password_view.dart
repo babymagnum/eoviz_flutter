@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
@@ -8,6 +7,7 @@ import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'stores/change_password_stores.dart';
 
@@ -18,6 +18,10 @@ class ChangePasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

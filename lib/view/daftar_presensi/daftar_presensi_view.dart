@@ -2,27 +2,28 @@ import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
-import 'package:dribbble_clone/view/notifikasi/widgets/list_notifikasi_item.dart';
+import 'package:dribbble_clone/core/widgets/positioned_loading.dart';
+import 'package:dribbble_clone/view/daftar_presensi/widgets/list_presensi_item.dart';
+import 'package:dribbble_clone/view/filter_presensi/filter_presensi_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'stores/notifikasi_stores.dart';
+import 'stores/daftar_presensi_stores.dart';
 
-class NotifikasiView extends StatefulWidget {
+class DaftarPresensiView extends StatefulWidget {
   @override
-  _NotifikasiViewState createState() => _NotifikasiViewState();
+  _DaftarPresensiViewState createState() => _DaftarPresensiViewState();
 }
 
-class _NotifikasiViewState extends State<NotifikasiView> {
-
-  var _notifikasiStores = locator<NotifikasiStores>();
+class _DaftarPresensiViewState extends State<DaftarPresensiView> {
+  var _daftarPresensiStores = locator<DaftarPresensiStores>();
 
   @override
   void initState() {
 
     Future.delayed(Duration.zero, () {
-      _notifikasiStores.getNotifikasi();
+      _daftarPresensiStores.getListPresensi();
     });
 
     super.initState();
@@ -56,24 +57,31 @@ class _NotifikasiViewState extends State<NotifikasiView> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: MediaQuery.of(context).padding.top + 26,),
-                  Text(buildTranslate(context, 'notification'), style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
+                        ),
+                        Expanded(
+                          child: Text(buildTranslate(context, 'presence_list'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => FilterPresensiView())),
+                          child: Image.asset('assets/images/ic_filter.png', width: size.width * 0.06, height: size.width * 0.06,)
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 22,),
                   Expanded(
                     child: Parent(
                       style: ParentStyle()..width(double.infinity)..borderRadius(topLeft: 50, topRight: 50)..background.color(Color(0xFFf0f2f5)),
                       child: Stack(
                         children: <Widget>[
-                          _notifikasiStores.isLoading ?
-                          Positioned(
-                            left: 0, right: 0, top: 0, bottom: 0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                CupertinoActivityIndicator()
-                              ],
-                            )
-                          ) :
-                          _notifikasiStores.listNotifikasi.length == 0 ?
+                          !_daftarPresensiStores.isLoading && _daftarPresensiStores.listPresensi.length == 0 ?
                           Positioned(
                             left: 0, right: 0, top: 0, bottom: 0,
                             child: Column(
@@ -81,7 +89,7 @@ class _NotifikasiViewState extends State<NotifikasiView> {
                               children: <Widget>[
                                 Image.asset('assets/images/ic_empty_notif.png', width: size.width * 0.62, height: size.width * 0.49,),
                                 SizedBox(height: 45,),
-                                Text(buildTranslate(context, 'there_are_no_notifications_yet'), style: ThemeTextStyle.poppinsRegular.apply(fontSizeDelta: size.width * 0.035, color: Color(0xFF636569)),)
+                                Text('Data Kosong', style: ThemeTextStyle.poppinsRegular.apply(fontSizeDelta: size.width * 0.035, color: Color(0xFF636569)),)
                               ],
                             )
                           ) :
@@ -89,12 +97,12 @@ class _NotifikasiViewState extends State<NotifikasiView> {
                             left: 0, right: 0, top: 3, bottom: 0,
                             child: NotificationListener(
                               child: ListView.builder(
-                                itemBuilder: (_, index) => ListNotifikasiItem(
-                                  isLast: index == _notifikasiStores.listNotifikasi.length - 1,
-                                  item: _notifikasiStores.listNotifikasi[index],
+                                itemBuilder: (_, index) => ListPresensiItem(
+                                  isLast: index == _daftarPresensiStores.listPresensi.length - 1,
+                                  item: _daftarPresensiStores.listPresensi[index],
                                   isFirst: index == 0,
                                 ),
-                                itemCount: _notifikasiStores.listNotifikasi.length,
+                                itemCount: _daftarPresensiStores.listPresensi.length,
                               )
                             )
                           )
@@ -104,7 +112,8 @@ class _NotifikasiViewState extends State<NotifikasiView> {
                   )
                 ],
               )
-            )
+            ),
+            PositionedLoading(visible: _daftarPresensiStores.isLoading)
           ],
         ),
       ),

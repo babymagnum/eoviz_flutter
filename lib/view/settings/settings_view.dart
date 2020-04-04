@@ -6,6 +6,7 @@ import 'package:dribbble_clone/view/bahasa/bahasa_view.dart';
 import 'package:dribbble_clone/view/change_password/change_password_view.dart';
 import 'package:dribbble_clone/view/settings/widgets/pengaturan_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
@@ -34,6 +35,10 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

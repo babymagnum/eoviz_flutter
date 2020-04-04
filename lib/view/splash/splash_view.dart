@@ -1,9 +1,11 @@
 import 'package:dribbble_clone/core/helper/constant.dart';
+import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/view/home/home_view.dart';
 import 'package:dribbble_clone/view/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'stores/splash_stores.dart';
 
 class SplashView extends StatefulWidget {
 
@@ -15,10 +17,14 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
 
+  var _splashStores = locator<SplashStores>();
+
   @override
   void initState() {
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: 1), () async {
+
+      await _splashStores.initSharedPreference();
 
       SharedPreferences.getInstance().then((preference) {
         final isLogin = preference.getBool(Constant.IS_LOGIN) ?? false;

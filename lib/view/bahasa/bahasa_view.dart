@@ -4,6 +4,7 @@ import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/view/bahasa/widgets/bahasa_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../main.dart';
 
@@ -48,6 +49,10 @@ class _BahasaViewState extends State<BahasaView> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

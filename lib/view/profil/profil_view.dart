@@ -12,6 +12,7 @@ import 'package:dribbble_clone/view/profil/widgets/bottom_sheet_ubah_foto.dart';
 import 'package:dribbble_clone/view/settings/settings_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -86,6 +87,10 @@ class _ProfilViewState extends State<ProfilView> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

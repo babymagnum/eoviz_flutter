@@ -8,6 +8,9 @@ import '../../view/notifikasi/stores/notifikasi_stores.dart';
 import '../../view/profil/stores/profil_stores.dart';
 import '../../view/change_password/stores/change_password_stores.dart';
 import '../../view/presensi_map/stores/presensi_map_stores.dart';
+import '../../view/daftar_presensi/stores/daftar_presensi_stores.dart';
+import '../../view/filter_presensi/stores/filter_presensi_stores.dart';
+import '../../view/splash/stores/splash_stores.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.I;
@@ -34,4 +37,7 @@ void setupLocator() {
   locator.registerLazySingleton<ProfilStores>(() => ProfilStores());
   locator.registerLazySingleton<ChangePasswordStores>(() => ChangePasswordStores());
   locator.registerLazySingleton<PresensiMapStores>(() => PresensiMapStores());
+  locator.registerLazySingleton<DaftarPresensiStores>(() => DaftarPresensiStores());
+  locator.registerLazySingleton<FilterPresensiStores>(() => FilterPresensiStores());
+  locator.registerLazySingleton<SplashStores>(() => SplashStores());
 }
