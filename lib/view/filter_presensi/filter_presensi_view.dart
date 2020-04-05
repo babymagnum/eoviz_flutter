@@ -6,6 +6,7 @@ import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_color.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/button_dropdown.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/core/widgets/submit_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,24 +88,7 @@ class _FilterPresensiViewState extends State<FilterPresensiView> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: MediaQuery.of(context).padding.top + 26,),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
-                        ),
-                        Expanded(
-                          child: Text(buildTranslate(context, 'filter'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
-                        ),
-                        Opacity(
-                          opacity: 0,
-                          child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,)
-                        ),
-                      ],
-                    ),
-                  ),
+                  CustomTabbar(title: 'filter', onItemClick: () {}, image: ''),
                   SizedBox(height: 22,),
                   Expanded(
                     child: Parent(

@@ -3,11 +3,13 @@ import 'package:camera/camera.dart';
 import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/common_functions.dart';
+import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
+import 'package:dribbble_clone/view/login/login_view.dart';
 import 'package:dribbble_clone/view/profil/widgets/bottom_sheet_ubah_foto.dart';
 import 'package:dribbble_clone/view/settings/settings_view.dart';
 import 'package:file_picker/file_picker.dart';
@@ -16,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'stores/profil_stores.dart';
 
 class ProfilView extends StatefulWidget {
@@ -197,6 +200,12 @@ class _ProfilViewState extends State<ProfilView> {
                                     Align(
                                       alignment: Alignment.center,
                                       child: Parent(
+                                        gesture: Gestures()..onTap(() {
+                                          SharedPreferences.getInstance().then((preference) {
+                                            preference.setBool(Constant.IS_LOGIN, false);
+                                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => LoginView()), (route) => false);
+                                          });
+                                        }),
                                         style: ParentStyle()..ripple(true)..borderRadius(all: 5)..padding(vertical: 7, horizontal: 7),
                                         child: Text(buildTranslate(context, 'logout'), style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Color(0xFFf4584e)),),
                                       ),

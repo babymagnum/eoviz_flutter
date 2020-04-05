@@ -3,6 +3,7 @@ import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/helper/text_util.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/view/daftar_presensi/daftar_presensi_view.dart';
 import 'package:dribbble_clone/view/presensi/widgets/jam_masuk_keluar.dart';
 import 'package:dribbble_clone/view/presensi_map/presensi_map_view.dart';
@@ -60,28 +61,9 @@ class PresensiView extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: MediaQuery.of(context).padding.top + 26,),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
-                        ),
-                        Expanded(
-                          child: Text(buildTranslate(context, 'presence'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 3),
-                          child: GestureDetector(
-                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => DaftarPresensiView())),
-                            child: Image.asset('assets/images/ic_history.png', width: size.width * 0.06, height: size.width * 0.06,)
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  CustomTabbar(title: 'presence', onItemClick: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => DaftarPresensiView()));
+                  }, image: 'assets/images/ic_history.png'),
                   SizedBox(height: 22,),
                   Expanded(
                     child: Parent(

@@ -11,6 +11,7 @@ import '../../view/presensi_map/stores/presensi_map_stores.dart';
 import '../../view/daftar_presensi/stores/daftar_presensi_stores.dart';
 import '../../view/filter_presensi/stores/filter_presensi_stores.dart';
 import '../../view/splash/stores/splash_stores.dart';
+import '../../view/tukar_shift/stores/tukar_shift_stores.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.I;
@@ -40,4 +41,5 @@ void setupLocator() {
   locator.registerLazySingleton<DaftarPresensiStores>(() => DaftarPresensiStores());
   locator.registerLazySingleton<FilterPresensiStores>(() => FilterPresensiStores());
   locator.registerLazySingleton<SplashStores>(() => SplashStores());
+  locator.registerLazySingleton<TukarShiftStores>(() => TukarShiftStores());
 }

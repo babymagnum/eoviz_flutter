@@ -2,7 +2,9 @@ import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
+import 'package:dribbble_clone/core/theme/theme_color.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,24 +50,7 @@ class _ForgotPasswordPinViewState extends State<ForgotPasswordPinView> {
           body: Column(
             children: <Widget>[
               SizedBox(height: MediaQuery.of(context).padding.top + 36),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Image.asset('assets/images/back_button_circle.png', width: 30, height: 30,)
-                    ),
-                    Expanded(
-                      child: Text(buildTranslate(context, 'forgot_password_title'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04))
-                    ),
-                    Opacity(
-                      opacity: 0,
-                      child: Image.asset('assets/images/back_button_circle.png', width: 30, height: 30,),
-                    )
-                  ],
-                ),
-              ),
+              CustomTabbar(title: 'forgot_password_title', onItemClick: () {}, image: '', titleColor: ThemeColor.dark),
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(

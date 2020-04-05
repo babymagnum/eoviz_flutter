@@ -6,6 +6,7 @@ import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/placeholder_network_image.dart';
 import 'package:dribbble_clone/view/beranda/widgets/beranda_menu_item.dart';
 import 'package:dribbble_clone/view/presensi/presensi_view.dart';
+import 'package:dribbble_clone/view/tukar_shift/tukar_shift_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -124,8 +125,6 @@ class _BerandaViewState extends State<BerandaView> {
                                               animationDuration: 500,
                                               circularStrokeCap: CircularStrokeCap.round,
                                               progressColor: Color(0xFF245076),
-                                              //arcType: ArcType.FULL,
-                                              //arcBackgroundColor: Colors.white,
                                               backgroundColor: Colors.white,
                                               center: Text("71%", style: ThemeTextStyle.poppinsBold.apply(fontSizeDelta: size.width * 0.05, color: Colors.white),),
                                             )
@@ -187,7 +186,7 @@ class _BerandaViewState extends State<BerandaView> {
                                         child: BerandaMenuItem(
                                           title: 'exchange_shift',
                                           image: 'assets/images/ic_tukar_shift.png',
-                                          onClick: () => print('tukar shift click'),
+                                          onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => TukarShiftView())),
                                         )
                                       ),
                                       SizedBox(width: 23,),

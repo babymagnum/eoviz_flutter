@@ -2,6 +2,7 @@ import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/core/widgets/positioned_loading.dart';
 import 'package:dribbble_clone/view/daftar_presensi/widgets/list_presensi_item.dart';
 import 'package:dribbble_clone/view/filter_presensi/filter_presensi_view.dart';
@@ -57,24 +58,9 @@ class _DaftarPresensiViewState extends State<DaftarPresensiView> {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: MediaQuery.of(context).padding.top + 26,),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
-                        ),
-                        Expanded(
-                          child: Text(buildTranslate(context, 'presence_list'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
-                        ),
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => FilterPresensiView())),
-                          child: Image.asset('assets/images/ic_filter.png', width: size.width * 0.06, height: size.width * 0.06,)
-                        ),
-                      ],
-                    ),
-                  ),
+                  CustomTabbar(title: 'presence_list', onItemClick: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => FilterPresensiView()));
+                  }, image: 'assets/images/ic_filter.png'),
                   SizedBox(height: 22,),
                   Expanded(
                     child: Parent(

@@ -1,7 +1,9 @@
 import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/locator.dart';
 import 'package:dribbble_clone/core/theme/dimens.dart';
+import 'package:dribbble_clone/core/theme/theme_color.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/core/widgets/custom_text_field.dart';
 import 'package:dribbble_clone/view/forgot_password_email/forgot_password_email_view.dart';
 import 'package:flutter/material.dart';
@@ -28,24 +30,7 @@ class ForgotPasswordView extends StatelessWidget {
       body: Column(
         children: <Widget>[
           SizedBox(height: MediaQuery.of(context).padding.top + 36),
-          Stack(
-            children: <Widget>[
-              Positioned(
-                left: 30,
-                child: GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: Image.asset('assets/images/back_button_circle.png', width: 30, height: 30,)
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 3),
-                  child: Text(buildTranslate(context, 'forgot_password_title'), style: ThemeTextStyle.poppinsMedium.apply(color: Color(0xFF253644), fontSizeDelta: size.width * 0.04)),
-                )
-              ),
-            ],
-          ),
+          CustomTabbar(title: 'forgot_password_title', onItemClick: () {}, image: '', titleColor: ThemeColor.dark),
           Expanded(
             child: SingleChildScrollView(
               child: Padding(

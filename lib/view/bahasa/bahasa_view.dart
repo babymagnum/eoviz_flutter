@@ -2,6 +2,7 @@ import 'package:division/division.dart';
 import 'package:dribbble_clone/core/helper/app_localizations.dart';
 import 'package:dribbble_clone/core/helper/constant.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
+import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/view/bahasa/widgets/bahasa_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -74,24 +75,7 @@ class _BahasaViewState extends State<BahasaView> {
             child: Column(
               children: <Widget>[
                 SizedBox(height: MediaQuery.of(context).padding.top + 26,),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
-                      ),
-                      Expanded(
-                        child: Text(buildTranslate(context, 'language'), textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: Colors.white),)
-                      ),
-                      Opacity(
-                        opacity: 0,
-                        child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,)
-                      ),
-                    ],
-                  ),
-                ),
+                CustomTabbar(title: 'language', onItemClick: () {}, image: ''),
                 SizedBox(height: 22,),
                 Expanded(
                   child: Parent(
