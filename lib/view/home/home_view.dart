@@ -6,6 +6,7 @@ import 'package:dribbble_clone/view/persetujuan/persetujuan_view.dart';
 import 'package:dribbble_clone/view/profil/profil_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../core/theme/theme_color.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,6 +26,10 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Color(0xFFf0f2f5),
+    ));
 
     final size = MediaQuery.of(context).size;
 

@@ -30,18 +30,21 @@ class DialogBatalkanTukarShift extends StatelessWidget {
               SizedBox(height: 12,),
               Text(buildTranslate(context, 'confirm_cancel_exchange'), style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, decoration: TextDecoration.none),),
               SizedBox(height: 13,),
-              Material(
-                child: Parent(
-                  style: ParentStyle()..width(double.infinity)..background.color(ThemeColor.veryLightPinkSeven)..borderRadius(all: 20)..height(size.width * 0.25),
-                  child: TextField(
-                    onChanged: (value) => _detailStores.changeAlasanPembatalan(value),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 10000000,
-                    style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: MediaQuery.of(context).size.width * 0.035, color: ThemeColor.black.withOpacity(0.5)),
-                    decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      enabledBorder: InputBorder.none,
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Material(
+                  child: Parent(
+                    style: ParentStyle()..width(double.infinity)..background.color(ThemeColor.veryLightPinkSeven)..borderRadius(all: 20)..height(size.width * 0.25),
+                    child: TextField(
+                      onChanged: (value) => _detailStores.changeAlasanPembatalan(value),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 10000000,
+                      style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: MediaQuery.of(context).size.width * 0.035, color: ThemeColor.black.withOpacity(0.5)),
+                      decoration: InputDecoration(
+                        focusedBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        enabledBorder: InputBorder.none,
+                      ),
                     ),
                   ),
                 ),

@@ -87,7 +87,8 @@ abstract class _PresensiMapStores with Store {
 
   @action
   updateMarker() async {
-    if (icon == null) icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(28, 35)), 'assets/images/ic_blue_marker.png');
+    //if (icon == null) icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(28, 35)), 'assets/images/ic_blue_marker.png');
+    if (icon == null) icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(15, 15)), 'assets/images/ic_blue_marker.png');
     markers.clear();
     markers.add(
       Marker(
