@@ -31,10 +31,10 @@ class DialogBatalkanTukarShift extends StatelessWidget {
               Text(buildTranslate(context, 'confirm_cancel_exchange'), style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, decoration: TextDecoration.none),),
               SizedBox(height: 13,),
               ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: Material(
                   child: Parent(
-                    style: ParentStyle()..width(double.infinity)..background.color(ThemeColor.veryLightPinkSeven)..borderRadius(all: 20)..height(size.width * 0.25),
+                    style: ParentStyle()..width(double.infinity)..background.color(ThemeColor.veryLightPinkSeven)..borderRadius(all: 10)..height(size.width * 0.25),
                     child: TextField(
                       onChanged: (value) => _detailStores.changeAlasanPembatalan(value),
                       keyboardType: TextInputType.multiline,
