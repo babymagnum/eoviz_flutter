@@ -33,4 +33,6 @@ class ThemeColor {
   static const lightGrey3 = Color(0xFFF2F2F2);
   static const paleGreyTwo = Color(0xFFf9fcff);
   static const darkThree = Color(0xFF11161d);
+  static const veryLightPinkSix = Color(0xFFe0e0e0);
+  static const veryLightPinkSeven = Color(0xFFf0f0f0);
 }

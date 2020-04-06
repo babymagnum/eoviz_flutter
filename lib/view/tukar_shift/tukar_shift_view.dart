@@ -8,6 +8,7 @@ import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/core/widgets/button_dropdown.dart';
 import 'package:dribbble_clone/core/widgets/custom_tabbar.dart';
 import 'package:dribbble_clone/core/widgets/submit_button.dart';
+import 'package:dribbble_clone/view/detail_pengajuan_tukar_shift/detail_pengajuan_tukar_shift_view.dart';
 import 'package:dribbble_clone/view/tukar_shift/widgets/list_shift_item.dart';
 import 'package:dribbble_clone/view/tukar_shift/widgets/pick_tanggal_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -255,11 +256,18 @@ class _TukarShiftViewState extends State<TukarShiftView> {
                                 Row(
                                   children: <Widget>[
                                     Expanded(
-                                      child: SubmitButton(onClick: () {}, title: 'save', customColor: ThemeColor.darkThree,)
+                                      child: SubmitButton(
+                                        onClick: () {},
+                                        title: 'save',
+                                        customColors: [ThemeColor.darkThree.withOpacity(0.8), ThemeColor.darkThree.withOpacity(0.8)],
+                                      )
                                     ),
                                     SizedBox(width: 20,),
                                     Expanded(
-                                      child: SubmitButton(onClick: () {}, title: 'submit')
+                                      child: SubmitButton(
+                                        onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => DetailPengajuanTukarShiftView())),
+                                        title: 'submit'
+                                      )
                                     )
                                   ],
                                 ),

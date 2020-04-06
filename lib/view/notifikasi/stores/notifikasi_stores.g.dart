@@ -43,14 +43,50 @@ mixin _$NotifikasiStores on _NotifikasiStores, Store {
     }, _$listNotifikasiAtom, name: '${_$listNotifikasiAtom.name}_set');
   }
 
+  final _$notifikasiPageAtom = Atom(name: '_NotifikasiStores.notifikasiPage');
+
+  @override
+  int get notifikasiPage {
+    _$notifikasiPageAtom.context.enforceReadPolicy(_$notifikasiPageAtom);
+    _$notifikasiPageAtom.reportObserved();
+    return super.notifikasiPage;
+  }
+
+  @override
+  set notifikasiPage(int value) {
+    _$notifikasiPageAtom.context.conditionallyRunInAction(() {
+      super.notifikasiPage = value;
+      _$notifikasiPageAtom.reportChanged();
+    }, _$notifikasiPageAtom, name: '${_$notifikasiPageAtom.name}_set');
+  }
+
+  final _$notifikasiLastPageAtom =
+      Atom(name: '_NotifikasiStores.notifikasiLastPage');
+
+  @override
+  int get notifikasiLastPage {
+    _$notifikasiLastPageAtom.context
+        .enforceReadPolicy(_$notifikasiLastPageAtom);
+    _$notifikasiLastPageAtom.reportObserved();
+    return super.notifikasiLastPage;
+  }
+
+  @override
+  set notifikasiLastPage(int value) {
+    _$notifikasiLastPageAtom.context.conditionallyRunInAction(() {
+      super.notifikasiLastPage = value;
+      _$notifikasiLastPageAtom.reportChanged();
+    }, _$notifikasiLastPageAtom, name: '${_$notifikasiLastPageAtom.name}_set');
+  }
+
   final _$_NotifikasiStoresActionController =
       ActionController(name: '_NotifikasiStores');
 
   @override
-  dynamic getNotifikasi() {
+  dynamic getNotifikasi(bool isFirst) {
     final _$actionInfo = _$_NotifikasiStoresActionController.startAction();
     try {
-      return super.getNotifikasi();
+      return super.getNotifikasi(isFirst);
     } finally {
       _$_NotifikasiStoresActionController.endAction(_$actionInfo);
     }

@@ -24,7 +24,6 @@ class _BerandaViewState extends State<BerandaView> {
 
   @override
   void initState() {
-
     Future.delayed(Duration.zero, () {
       if (_berandaStores.currentTime == '') _berandaStores.startTimerAndSetView();
     });
@@ -34,7 +33,6 @@ class _BerandaViewState extends State<BerandaView> {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(

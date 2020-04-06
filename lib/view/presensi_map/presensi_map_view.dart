@@ -7,6 +7,7 @@ import 'package:dribbble_clone/core/theme/dimens.dart';
 import 'package:dribbble_clone/core/theme/theme_text_style.dart';
 import 'package:dribbble_clone/view/presensi/widgets/jam_masuk_keluar.dart';
 import 'package:flutter/services.dart';
+import 'package:location/location.dart';
 import '../beranda/stores/beranda_stores.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,19 +29,55 @@ class PresensiMapViewState extends State<PresensiMapView> {
 
   var _presensiMapStores = locator<PresensiMapStores>();
   var _berandaStores = locator<BerandaStores>();
-  GoogleMapController mapController;
 
-  animateCamera(latitude, longitude) {
-    mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(latitude, longitude), zoom: double.parse('15'))));
+  Completer<GoogleMapController> _controller = Completer();
+  StreamSubscription _listener;
+
+  @override
+  void dispose() {
+    if (_listener != null) _listener.cancel();
+
+    super.dispose();
+  }
+
+  _getCurrentLocation() async {
+    try {
+      final location = Location();
+
+      var _permissionGranted = await location.hasPermission();
+      if (!_permissionGranted) {
+        _permissionGranted = await location.requestPermission();
+        if (!_permissionGranted) {
+          return;
+        }
+      }
+
+      var _serviceEnabled = await location.serviceEnabled();
+      if (!_serviceEnabled) {
+        _serviceEnabled = await location.requestService();
+        if (!_serviceEnabled) {
+          return;
+        }
+      }
+
+      _presensiMapStores.changeCurrentLocation(await location.getLocation());
+      _presensiMapStores.updateCameraAndMarker(_controller);
+
+      _listener = location.onLocationChanged().listen((event) {
+        _presensiMapStores.changeCurrentLocation(event);
+        _presensiMapStores.updateCameraAndMarker(_controller);
+      });
+    } on PlatformException catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        print('error: ${e.toString()}');
+      }
+    }
   }
 
   @override
   void initState() {
 
-    Future.delayed(Duration.zero, () {
-      _presensiMapStores.positionChangeListener(() => animateCamera(_presensiMapStores.currentLocation.latitude, _presensiMapStores.currentLocation.longitude));
-      _presensiMapStores.getCurrentLocation(() => animateCamera(_presensiMapStores.currentLocation.latitude, _presensiMapStores.currentLocation.longitude));
-    });
+    _getCurrentLocation();
 
     super.initState();
   }
@@ -50,7 +87,7 @@ class PresensiMapViewState extends State<PresensiMapView> {
 
     final size = MediaQuery.of(context).size;
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarColor: Color(0xFFf0f2f5),
     ));
 
@@ -64,7 +101,7 @@ class PresensiMapViewState extends State<PresensiMapView> {
                 markers: _presensiMapStores.markers,
                 initialCameraPosition: CameraPosition(target: LatLng(0, 0)),
                 mapType: MapType.normal,
-                onMapCreated: (GoogleMapController controller) => mapController = controller,
+                onMapCreated: (GoogleMapController controller) => _controller.complete(controller),
                 circles: _presensiMapStores.circles,
               ),
             ),
@@ -72,7 +109,7 @@ class PresensiMapViewState extends State<PresensiMapView> {
               left: 30, top: 0, right: 30,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: MediaQuery.of(context).padding.top + 23,),
+                  SizedBox(height: MediaQuery.of(context).padding.top + size.width * 0.05,),
                   Row(
                     children: <Widget>[
                       GestureDetector(
@@ -106,7 +143,6 @@ class PresensiMapViewState extends State<PresensiMapView> {
                   Parent(
                     style: ParentStyle()..background.color(Colors.white)..padding(vertical: 6, horizontal: 23)..borderRadius(all: Dimens.half_circle),
                     child: Text(buildTranslate(context, 'you_are_on_the_zone'), style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.035, color: Color(0xFF347eb2)),),
-                    gesture: Gestures()..onTap(() => animateCamera(_presensiMapStores.currentLocation.latitude, _presensiMapStores.currentLocation.longitude)),
                   ),
                   SizedBox(height: 8,),
                   JamMasukKeluar(),

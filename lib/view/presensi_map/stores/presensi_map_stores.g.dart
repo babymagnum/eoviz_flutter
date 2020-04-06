@@ -63,14 +63,14 @@ mixin _$PresensiMapStores on _PresensiMapStores, Store {
   final _$markersAtom = Atom(name: '_PresensiMapStores.markers');
 
   @override
-  Set<Marker> get markers {
+  ObservableSet<Marker> get markers {
     _$markersAtom.context.enforceReadPolicy(_$markersAtom);
     _$markersAtom.reportObserved();
     return super.markers;
   }
 
   @override
-  set markers(Set<Marker> value) {
+  set markers(ObservableSet<Marker> value) {
     _$markersAtom.context.conditionallyRunInAction(() {
       super.markers = value;
       _$markersAtom.reportChanged();
@@ -80,14 +80,14 @@ mixin _$PresensiMapStores on _PresensiMapStores, Store {
   final _$circlesAtom = Atom(name: '_PresensiMapStores.circles');
 
   @override
-  Set<Circle> get circles {
+  ObservableSet<Circle> get circles {
     _$circlesAtom.context.enforceReadPolicy(_$circlesAtom);
     _$circlesAtom.reportObserved();
     return super.circles;
   }
 
   @override
-  set circles(Set<Circle> value) {
+  set circles(ObservableSet<Circle> value) {
     _$circlesAtom.context.conditionallyRunInAction(() {
       super.circles = value;
       _$circlesAtom.reportChanged();
@@ -149,16 +149,25 @@ mixin _$PresensiMapStores on _PresensiMapStores, Store {
         name: '${_$isInsideAnyPresenceAtom.name}_set');
   }
 
-  final _$getCurrentLocationAsyncAction = AsyncAction('getCurrentLocation');
+  final _$updateMarkerAsyncAction = AsyncAction('updateMarker');
 
   @override
-  Future getCurrentLocation(Function() onSuccess) {
-    return _$getCurrentLocationAsyncAction
-        .run(() => super.getCurrentLocation(onSuccess));
+  Future updateMarker() {
+    return _$updateMarkerAsyncAction.run(() => super.updateMarker());
   }
 
   final _$_PresensiMapStoresActionController =
       ActionController(name: '_PresensiMapStores');
+
+  @override
+  dynamic changeCurrentLocation(LocationData value) {
+    final _$actionInfo = _$_PresensiMapStoresActionController.startAction();
+    try {
+      return super.changeCurrentLocation(value);
+    } finally {
+      _$_PresensiMapStoresActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic checkCoordinate() {
@@ -171,31 +180,11 @@ mixin _$PresensiMapStores on _PresensiMapStores, Store {
   }
 
   @override
-  dynamic positionChangeListener(Function() onUpdate) {
-    final _$actionInfo = _$_PresensiMapStoresActionController.startAction();
-    try {
-      return super.positionChangeListener(onUpdate);
-    } finally {
-      _$_PresensiMapStoresActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic drawSingleCircle(
       String id, int solidColor, int strokeColor, LatLng latLng) {
     final _$actionInfo = _$_PresensiMapStoresActionController.startAction();
     try {
       return super.drawSingleCircle(id, solidColor, strokeColor, latLng);
-    } finally {
-      _$_PresensiMapStoresActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic updateMarker(LocationData location) {
-    final _$actionInfo = _$_PresensiMapStoresActionController.startAction();
-    try {
-      return super.updateMarker(location);
     } finally {
       _$_PresensiMapStoresActionController.endAction(_$actionInfo);
     }

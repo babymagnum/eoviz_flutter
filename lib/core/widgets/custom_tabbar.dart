@@ -24,9 +24,11 @@ class CustomTabbar extends StatelessWidget {
             onTap: () => Navigator.of(context).pop(),
             child: Image.asset('assets/images/back_button_circle.png', width: size.width * 0.08, height: size.width * 0.08,),
           ),
+          SizedBox(width: 10,),
           Expanded(
-            child: Text(buildTranslate(context, title), maxLines: 1, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: titleColor == null ? Colors.white : titleColor),)
+            child: Text(buildTranslate(context, title), maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: ThemeTextStyle.poppinsMedium.apply(fontSizeDelta: size.width * 0.04, color: titleColor == null ? Colors.white : titleColor),)
           ),
+          SizedBox(width: 10,),
           Opacity(
             opacity: image == '' ? 0 : 1,
             child: GestureDetector(

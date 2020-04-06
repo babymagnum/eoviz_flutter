@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -21,10 +21,10 @@ abstract class _PresensiMapStores with Store {
   String password = '';
 
   @observable
-  Set<Marker> markers = Set();
+  ObservableSet<Marker> markers = ObservableSet.of([]);
 
   @observable
-  Set<Circle> circles = Set();
+  ObservableSet<Circle> circles = ObservableSet.of([]);
 
   @observable
   LocationData currentLocation;
@@ -35,11 +35,18 @@ abstract class _PresensiMapStores with Store {
   @observable
   bool isInsideAnyPresence = false;
 
-  var location = Location();
   BitmapDescriptor icon;
+
+  @action
+  changeCurrentLocation(LocationData value) => currentLocation = value;
 
   Future<double> getDistance(LatLng current, LatLng destination) async {
     return await Geolocator().distanceBetween(current.latitude, current.longitude, destination.latitude, destination.longitude);
+  }
+
+  animateCamera(Completer<GoogleMapController> completer) async {
+    GoogleMapController mapController = await completer.future;
+    mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(currentLocation.latitude, currentLocation.longitude), zoom: double.parse('17'))));
   }
 
   @action
@@ -60,17 +67,6 @@ abstract class _PresensiMapStores with Store {
   }
 
   @action
-  positionChangeListener(Function() onUpdate) {
-    location.onLocationChanged().listen((LocationData mCurrentLocation) {
-      currentLocation = mCurrentLocation;
-      updateMarker(currentLocation);
-      onUpdate();
-      // populate circle
-      //checkCoordinate();
-    });
-  }
-
-  @action
   drawSingleCircle(String id, int solidColor, int strokeColor, LatLng latLng) {
     circles.add(
       Circle(
@@ -84,29 +80,19 @@ abstract class _PresensiMapStores with Store {
     );
   }
 
-  @action
-  getCurrentLocation(Function() onSuccess) async {
-    isLoading = true;
-
-    try {
-      icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(28, 35)), 'assets/images/ic_blue_marker.png');
-      currentLocation = await location.getLocation();
-      isLoading = false;
-      updateMarker(currentLocation);
-      onSuccess();
-    } on PlatformException catch (e) {
-      if (e.code == 'PERMISSION_DENIED') {
-        print('permission denied');
-      }
-    }
+  updateCameraAndMarker(Completer<GoogleMapController> completer) {
+    updateMarker();
+    animateCamera(completer);
   }
 
   @action
-  updateMarker(LocationData location) {
+  updateMarker() async {
+    if (icon == null) icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(28, 35)), 'assets/images/ic_blue_marker.png');
+    markers.clear();
     markers.add(
       Marker(
         markerId: MarkerId('1'),
-        position: LatLng(location.latitude, location.longitude),
+        position: LatLng(currentLocation.latitude, currentLocation.longitude),
         icon: icon
       )
     );
